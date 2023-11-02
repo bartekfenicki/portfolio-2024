@@ -1,6 +1,27 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
+import { RouterLink, RouterView, useRouter } from 'vue-router'
+import {onMounted, ref} from "vue";
+import {getAuth, onAuthStateChanged, signOut} from "firebase/auth";
 
+const router = useRouter();
+const isLoggedIn = ref(false);
+let auth;
+
+onMounted(()=> {
+auth = getAuth();
+onAuthStateChanged(auth , (user) => {
+   if (user) {
+      isLoggedIn.value = true;
+   } else {
+      isLoggedIn.value = false;
+   }
+})
+}); 
+const signingOut = () => {
+   signOut(auth).then(()=> {
+      router.push("/")
+   })
+}
 
 </script>
 
@@ -17,28 +38,7 @@ export default {
      
       this.selectedItem = this.selectedItem === item ? null : item;
     }
-    /*
-    toggleSidebar() {
-      this.isSidebarOpen = !this.isSidebarOpen;
-    },
-    closeSidebar() {
-      this.isSidebarOpen = false;
-    },
-    mounted() {
-    document.addEventListener('click', this.handleClickOutside);
-  },
-  beforeDestroy() {
-    document.removeEventListener('click', this.handleClickOutside);
-  },
-  handleClickOutside(event) {
-      if (
-        this.isSidebarOpen && !this.$refs.sidebar.contains(event.target) &&
-        event.target !== this.$el.querySelector('button')
-      ) {
-        this.isSidebarOpen = false;
-      }
-    },
-    */
+   
   },
   
 };
@@ -68,10 +68,16 @@ lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200
    <div class="h-full  py-4 overflow-y-auto"> 
 
       <div class="w-48 h-52 overflow-hidden me-auto ms-auto">
-        <img class="w-full h-full object-cover object-bottom rounded border" src="../src/assets/img/avatar.PNG" alt="Default avatar">
+         <RouterLink to="/login">
+            <img class="w-full h-full object-cover object-bottom rounded border" src="../src/assets/img/avatar.PNG" alt="Default avatar">
+         </RouterLink>
       </div>
+      <p v-if="isLoggedIn" class="text-white text-center m-0">  <RouterLink to="/admin">ADMIN</RouterLink></p>
+      <p class="text-red-800 text-center m-0">
+         <button v-if="isLoggedIn" @click.prevent="signingOut">log out</button>
+      </p>
 
-      <ul class="space-y-6 font-medium mt-16 flex flex-col text-center">
+      <ul class="space-y-6 font-medium mt-6 flex flex-col text-center">
          <li class="w-full" @click="selectItem('item1')"
         :class="{ 'active': selectedItem === 'item1' }"> 
           <RouterLink to="/">HOME</RouterLink>
@@ -94,15 +100,15 @@ lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200
          </li>
       </ul>
       <div class="border border-green-700 mt-8 mx-4">
-         <p class="text-start  ms-1  text-green-700">
-         CONTACT ME!
-      </p>
-      <p class="text-end mt-4 me-1 text-green-600">
-         +45 81 92 02 94
-      </p>
-      <p class="text-end mt-2 me-1 mb-2 text-green-600">
-         bartek.fenicki@gmail.com
-      </p>
+            <p class="text-start  ms-1  text-green-700">
+            CONTACT ME!
+         </p>
+         <p class="text-end mt-4 me-1 text-green-600">
+            +45 81 92 02 94
+         </p>
+         <p class="text-end mt-2 me-1 mb-2 text-green-600">
+            bartek.fenicki@gmail.com
+         </p>
       </div>
       
    </div>
