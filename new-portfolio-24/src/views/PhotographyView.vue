@@ -10,12 +10,14 @@
         MY PHOTO COLLECTION
       </p>
       
-      <div v-for="photo in photos" :key="photo.id" class="text-black">
-
-        {{ photo.name }}
-        {{ photo.date }}
-        <img :src="photo.imgURL" alt=""  >
-
+      <div v-for="photo in photos" :key="photo.id" class="w-full mt-10">
+  
+        <figure class="max-w-sm ms-auto me-auto">
+          <img class="h-auto max-w-full rounded-lg" :src="photo.imgURL" alt="">
+          <figcaption class="mt-2 text-md text-center text-gray-50">{{ photo.name }}</figcaption>
+          <figcaption class="mt-2 text-sm text-center text-purple-200 italic"> {{ photo.date }}</figcaption>
+        </figure>
+        
 
       </div>
       
@@ -68,5 +70,13 @@ const photos = ref([
       }
     .title-main {
     font-size: 50px;
+    }
+    @media screen and (max-width:450px) {
+      .title-sub {
+      font-size: 15px;
+      }
+    .title-main {
+    font-size: 30px;
+    }
     }
     </style>

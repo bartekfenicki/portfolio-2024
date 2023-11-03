@@ -2,7 +2,7 @@
 
     <div class="p-4 lg:ml-64 lg:mr-64">
 
-    <div class="me-auto ms-auto mt-32  w-full max-w-sm p-4 bg-gray-500 border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-900 dark:border-gray-700">
+    <div class=" me-0 ms-0 sm:me-auto sm:ms-auto mt-32  w-full max-w-sm  p-4 bg-gray-500 border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-900 dark:border-gray-700">
         <form class="space-y-6 login" action="#">
             <h5 class="text-xl font-medium text-gray-900 dark:text-white">Sign as Admin</h5>
             <div>

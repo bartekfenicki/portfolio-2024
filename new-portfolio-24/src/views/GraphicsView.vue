@@ -8,12 +8,17 @@
         MY GRAPHICAL WORKS
       </p>
 
-      <div v-for="graphic in graphics" :key="graphic.id" class="text-black">
+      <div v-for="graphic in graphics" :key="graphic.id" class="mt-10 w-full">
 
-{{ graphic.name }}
-{{ graphic.description }}
-<img :src="graphic.imgURL" alt=""  >
-
+        <div class="max-w-sm p-4 rounded-lg shadow-lg me-auto ms-auto" style="background-color: #282828;">
+          <img class="w-full" :src="graphic.imgURL" alt="">
+          <div class="px-6 py-4">
+            <div class="font-bold text-2xl mb-2 text-center">{{ graphic.name }}</div>
+            <p class="text-gray-200 text-base text-center">
+              {{ graphic.description }}
+            </p>
+          </div>
+        </div>
 
 </div>
 
@@ -74,5 +79,13 @@ const graphics = ref([
       }
     .title-main {
     font-size: 50px;
+    }
+    @media screen and (max-width:450px) {
+      .title-sub {
+      font-size: 15px;
+      }
+    .title-main {
+    font-size: 30px;
+    }
     }
     </style>

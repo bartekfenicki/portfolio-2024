@@ -7,12 +7,20 @@
         MY WEBSITES
       </p>
 
-      <div v-for="site in sites" class="text-black">
+      <div v-for="site in sites" class="w-full mt-10">
 
-        {{ site.name }}
-        {{ site.description }}
-        {{ site.link }}
-        <img :src="site.imgURL" alt=""  >
+        <div class="max-w-sm p-4 rounded-lg shadow-lg me-auto ms-auto" style="background-color: #282828;">
+          <img class="w-full" :src="site.imgURL" alt="">
+          <div class="px-6 py-4">
+            <div class="font-bold text-2xl mb-2 text-center">{{ site.name }}</div>
+            <p class="text-gray-200 text-base text-center">
+              {{ site.description }}
+            </p>
+          </div>
+         <p class="text-green-700 text-center">
+          <a :href="site.link">view the site</a>
+         </p> 
+        </div>
 
       </div>
 
@@ -66,5 +74,13 @@ const siteLink = ref('')
       }
     .title-main {
     font-size: 50px;
+    }
+    @media screen and (max-width:450px) {
+      .title-sub {
+      font-size: 15px;
+      }
+    .title-main {
+    font-size: 30px;
+    }
     }
     </style>
