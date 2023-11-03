@@ -16,10 +16,11 @@
         clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
       </iframe>
       <p class="text-center text-lg mt-16">
-        <a href="../assets/img/cv-bartek-2024.pdf" class="text-center px-16 py-4 text-green-600 hover:text-white  border-2 border-green-800 hover:bg-green-700  rounded-lg w-full">
+        <a :href="pdfFilePath" target="_blank" class="text-center px-16 py-4 text-green-600 hover:text-white  border-2 border-green-800 hover:bg-green-700  rounded-lg w-full">
         View CV in PDF
       </a>
       </p>
+      
 
 
 
@@ -28,6 +29,17 @@
     
 
     </template>
+
+    <script scoped>
+  export default {
+  data() {
+    return {
+      pdfFilePath: '../assets/img/cv-bartek-2024.pdf',
+    };
+  },
+};
+  
+  </script>
     
     <style scoped>
     .title-sub {
